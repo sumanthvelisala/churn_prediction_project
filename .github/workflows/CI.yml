@@ -27,7 +27,7 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install -r requirements.txt
 
-            # 4️⃣ Basic import test (VERY IMPORTANT)
+            # 4️⃣ Basic import test
             - name: Run basic app test
                 run: |
                     python - <<EOF
@@ -39,5 +39,4 @@ jobs:
 
             # 5️⃣ Build Docker image
             - name: Build Docker image
-                run: |
-                    docker build -t churn-api .
+                run: docker build -t churn-api .
