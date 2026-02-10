@@ -1,4 +1,4 @@
-name: CI
+name: ML CI Pipeline
 
 on:
     push:
@@ -7,30 +7,38 @@ on:
         branches: [ main ]
 
 jobs:
-    build:
+    build-test:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            # Checkout code
+            - name: Checkout repo
+                uses: actions/checkout@v4
 
+            # Python setup
             - name: Set up Python
-                uses: actions/setup-python@v4
+                uses: actions/setup-python@v5
                 with:
-                    python-version: '3.10'
+                    python-version: "3.10"
 
+            # Install dependencies
             - name: Install dependencies
                 run: |
                     python -m pip install --upgrade pip
                     pip install -r requirements.txt
 
-            - name: Run basic app test
+            # Train model (CI proof)
+            - name: Train model
+                run: python model/train.py
+
+            # Basic API import test
+            - name: API import test
                 run: |
                     python - <<EOF
-                    import fastapi
-                    import sklearn
-                    import pandas
-                    print("Basic imports successful")
+                    from app.main import app
+                    print("✅ FastAPI import successful")
                     EOF
 
+            # Docker build test
             - name: Build Docker image
                 run: docker build -t churn-api .
