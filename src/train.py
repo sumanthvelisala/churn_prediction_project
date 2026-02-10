@@ -69,6 +69,6 @@ model = Pipeline(steps=[
 model.fit(X_train, y_train)
 
 os.makedirs("models", exist_ok=True)
-joblib.dump(model, "models/ott_dropoff_model1.pkl")
+joblib.dump(model, "models/ott_dropoff_model.pkl")
 
 print("✅ Model trained & saved")
