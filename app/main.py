@@ -5,7 +5,7 @@ from src.schema import OTTEvent
 
 app = FastAPI(title="OTT Drop-off Prediction API")
 
-model = joblib.load("models/ott_dropoff_model.pkl")
+model = joblib.load("models/ott_dropoff_model1.pkl")
 
 @app.post("/predict")
 def predict(event: OTTEvent):
