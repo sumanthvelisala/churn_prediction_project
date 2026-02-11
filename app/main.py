@@ -7,6 +7,11 @@ app = FastAPI(title="OTT Drop-off Prediction API")
 
 model = joblib.load("models/ott_dropoff_model.pkl")
 
+@app.get("/")
+def health():
+    return {"status": "API running"} 
+
+
 @app.post("/predict")
 def predict(event: OTTEvent):
     data = event.dict()
