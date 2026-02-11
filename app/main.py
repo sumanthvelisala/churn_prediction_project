@@ -25,6 +25,7 @@ def health():
 @app.post("/predict")
 def predict(event: OTTEvent):
     model = get_model()
+
     data = event.dict()
     df = pd.DataFrame([data])
 
