@@ -31,6 +31,10 @@ jobs:
             - name: Train model
               run: python src/train.py
 
+              # 5️⃣ Run tests
+            - name: Run tests
+              run: pytest -v
+
             # 5️⃣ Verify model exists
             - name: Verify model file
               run: ls -la models/

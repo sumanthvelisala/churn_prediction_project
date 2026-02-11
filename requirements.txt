@@ -6,3 +6,5 @@ seaborn
 joblib
 fastapi
 uvicorn
+pytest
+httpx
